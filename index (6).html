@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Days of Cyber Security - Complete Learning Roadmap</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --primary-dark: #00cc6a;
+            --secondary: #00d4ff;
+            --accent: #ff6b6b;
+            --bg-dark: #0a0e1a;
+            --bg-card: #111827;
+            --bg-card-hover: #1a2332;
+            --text-primary: #ffffff;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --border: #1f2937;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --gradient-1: linear-gradient(135deg, #00ff88 0%, #00d4ff 100%);
+            --gradient-2: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--gradient-2);
+            padding: 60px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://image.qwenlm.ai/public_source/1406f69d-597c-48b3-b41c-6547f032309d/1b250bee9-b90b-47d2-833b-debbeaad9b8e.png') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .n8n-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid var(--primary);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* Progress Section */
+        .progress-section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px;
+            margin: -30px auto 40px;
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .progress-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .progress-stats {
+            display: flex;
+            gap: 30px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .progress-bar-container {
+            background: var(--bg-dark);
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 255, 136, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--primary);
+        }
+
+        /* Search & Filter */
+        .search-section {
+            margin-bottom: 30px;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .search-input-wrapper {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 20px 14px 50px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .filter-select {
+            padding: 14px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            cursor: pointer;
+            min-width: 200px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Phase Tabs */
+        .phase-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .phase-tab {
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+
+        .phase-tab:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .phase-tab.active {
+            background: var(--gradient-1);
+            color: var(--bg-dark);
+            border-color: transparent;
+        }
+
+        /* Days Grid */
+        .days-grid {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .day-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .day-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .day-card.completed {
+            border-color: var(--success);
+        }
+
+        .day-card.completed .day-header {
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .day-header {
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--bg-card);
+        }
+
+        .day-header:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .day-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .day-number {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--bg-dark);
+            font-family: 'JetBrains Mono', monospace;
+            flex-shrink: 0;
+        }
+
+        .day-card.completed .day-number {
+            background: var(--success);
+        }
+
+        .day-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .day-phase {
+            font-size: 0.875rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .day-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .topic-count {
+            background: var(--bg-dark);
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .toggle-icon {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+            color: var(--text-muted);
+        }
+
+        .day-card.expanded .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .day-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .day-card.expanded .day-content {
+            max-height: 1000px;
+        }
+
+        .topics-list {
+            padding: 0 24px 24px;
+        }
+
+        .topic-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .topic-item:last-child {
+            border-bottom: none;
+        }
+
+        .topic-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .topic-checkbox:hover {
+            border-color: var(--primary);
+        }
+
+        .topic-checkbox.checked {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .topic-checkbox.checked::after {
+            content: '✓';
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .topic-info {
+            flex: 1;
+        }
+
+        .topic-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .topic-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .topic-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .topic-tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--primary);
+            border-radius: 50px;
+            font-weight: 500;
+        }
+
+        .topic-tag.blue {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--info);
+        }
+
+        .topic-tag.orange {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .progress-stats {
+                gap: 15px;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+
+            .day-header {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .day-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .search-input-wrapper,
+            .filter-select {
+                min-width: 100%;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .day-card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .day-card:nth-child(1) { animation-delay: 0.05s; }
+        .day-card:nth-child(2) { animation-delay: 0.1s; }
+        .day-card:nth-child(3) { animation-delay: 0.15s; }
+        .day-card:nth-child(4) { animation-delay: 0.2s; }
+        .day-card:nth-child(5) { animation-delay: 0.25s; }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border-radius: 16px;
+            max-width: 500px;
+            width: 100%;
+            padding: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">🔐</div>
+                    <span style="font-size: 1.5rem; font-weight: 700;">CyberSec Roadmap</span>
+                </div>
+                <h1>100 Days of Cyber Security</h1>
+                <p class="subtitle">From absolute zero (Linux commands) to Bug Bounty Hunter. A daily automated video challenge roadmap designed for n8n API integration.</p>
+                <div class="n8n-badge">
+                    <span>⚡</span>
+                    <span>n8n Automation Engine Ready</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="progress-section">
+            <div class="progress-header">
+                <h2 class="progress-title">Your Progress</h2>
+                <div class="progress-stats">
+                    <div class="stat">
+                        <div class="stat-value" id="completedDays">0</div>
+                        <div class="stat-label">Days Completed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="completedTopics">0</div>
+                        <div class="stat-label">Topics Done</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" id="totalTopics">450</div>
+                        <div class="stat-label">Total Topics</div>
+                    </div>
+                </div>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+            </div>
+            <div class="progress-actions">
+                <button class="btn btn-primary" onclick="resetProgress()">
+                    <span>🔄</span> Reset Progress
+                </button>
+                <button class="btn btn-secondary" onclick="exportProgress()">
+                    <span>📥</span> Export Progress
+                </button>
+                <button class="btn btn-secondary" onclick="importProgress()">
+                    <span>📤</span> Import Progress
+                </button>
+            </div>
+        </section>
+
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search days or topics...">
+                </div>
+                <select class="filter-select" id="phaseFilter">
+                    <option value="all">All Phases</option>
+                    <option value="foundation">Foundation (Days 1-20)</option>
+                    <option value="networking">Networking (Days 21-40)</option>
+                    <option value="linux">Linux & Scripting (Days 41-60)</option>
+                    <option value="web">Web Security (Days 61-80)</option>
+                    <option value="advanced">Advanced & Bug Bounty (Days 81-100)</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="phase-tabs">
+            <button class="phase-tab active" data-phase="all">All Days</button>
+            <button class="phase-tab" data-phase="foundation">Foundation</button>
+            <button class="phase-tab" data-phase="networking">Networking</button>
+            <button class="phase-tab" data-phase="linux">Linux</button>
+            <button class="phase-tab" data-phase="web">Web Security</button>
+            <button class="phase-tab" data-phase="advanced">Advanced</button>
+        </section>
+
+        <section class="days-grid" id="daysGrid">
+            <!-- Days will be generated by JavaScript -->
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2024 100 Days of Cyber Security. Designed for n8n API integration.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Documentation</a>
+                    <a href="#" class="footer-link">API Reference</a>
+                    <a href="#" class="footer-link">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h3 class="modal-title" id="modalTitle">Export Progress</h3>
+            <p id="modalContent">Your progress has been exported to your clipboard.</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Complete 100 Days Cybersecurity Roadmap Data
+        const roadmapData = [
+            // Foundation Phase (Days 1-20)
+            { day: 1, phase: 'foundation', title: 'Introduction to Cybersecurity', topics: [
+                { title: 'What is Cybersecurity?', desc: 'Understanding the core concepts and importance', tags: ['basics', 'theory'] },
+                { title: 'CIA Triad', desc: 'Confidentiality, Integrity, and Availability', tags: ['fundamentals'] },
+                { title: 'Security Roles & Careers', desc: 'Explore different cybersecurity career paths', tags: ['career'] },
+                { title: 'Threat Landscape Overview', desc: 'Current threats and attack vectors', tags: ['threats'] }
+            ]},
+            { day: 2, phase: 'foundation', title: 'Basic Computer Concepts', topics: [
+                { title: 'Hardware Fundamentals', desc: 'CPU, RAM, Storage, and peripherals', tags: ['hardware'] },
+                { title: 'Operating Systems Overview', desc: 'Windows, Linux, macOS differences', tags: ['os'] },
+                { title: 'File Systems', desc: 'NTFS, FAT32, ext4, and file structures', tags: ['filesystem'] },
+                { title: 'Virtual Machines', desc: 'Setting up VMs for safe practice', tags: ['virtualization'] }
+            ]},
+            { day: 3, phase: 'foundation', title: 'Introduction to Linux - Part 1', topics: [
+                { title: 'Linux Distribution Selection', desc: 'Choosing Kali, Ubuntu, or Parrot OS', tags: ['linux', 'setup'] },
+                { title: 'Linux Installation', desc: 'Dual boot and VM installation', tags: ['linux', 'installation'] },
+                { title: 'Linux Directory Structure', desc: 'Understanding /, /home, /etc, /var', tags: ['linux', 'filesystem'] },
+                { title: 'Basic Navigation Commands', desc: 'pwd, ls, cd, mkdir', tags: ['linux', 'commands'] }
+            ]},
+            { day: 4, phase: 'foundation', title: 'Linux Commands - Part 2', topics: [
+                { title: 'File Operations', desc: 'cp, mv, rm, touch, cat', tags: ['linux', 'commands'] },
+                { title: 'File Permissions', desc: 'chmod, chown, understanding rwx', tags: ['linux', 'permissions'] },
+                { title: 'Viewing Files', desc: 'less, more, head, tail', tags: ['linux', 'commands'] },
+                { title: 'Searching Files', desc: 'find, locate, grep basics', tags: ['linux', 'search'] }
+            ]},
+            { day: 5, phase: 'foundation', title: 'Linux Commands - Part 3', topics: [
+                { title: 'Process Management', desc: 'ps, top, htop, kill', tags: ['linux', 'processes'] },
+                { title: 'User Management', desc: 'useradd, usermod, passwd', tags: ['linux', 'users'] },
+                { title: 'Package Management', desc: 'apt, yum, dpkg, rpm', tags: ['linux', 'packages'] },
+                { title: 'Text Editors', desc: 'nano, vim basics', tags: ['linux', 'tools'] }
+            ]},
+            { day: 6, phase: 'foundation', title: 'Networking Fundamentals - Part 1', topics: [
+                { title: 'OSI Model', desc: '7 layers and their functions', tags: ['networking', 'theory'] },
+                { title: 'TCP/IP Model', desc: '4 layer model comparison', tags: ['networking', 'theory'] },
+                { title: 'IP Addressing', desc: 'IPv4, IPv6, subnetting basics', tags: ['networking', 'ip'] },
+                { title: 'MAC Addresses', desc: 'Hardware addressing', tags: ['networking', 'mac'] }
+            ]},
+            { day: 7, phase: 'foundation', title: 'Networking Fundamentals - Part 2', topics: [
+                { title: 'TCP vs UDP', desc: 'Connection-oriented vs connectionless', tags: ['networking', 'protocols'] },
+                { title: 'Common Ports', desc: '21, 22, 23, 25, 53, 80, 443', tags: ['networking', 'ports'] },
+                { title: 'DNS Fundamentals', desc: 'How domain resolution works', tags: ['networking', 'dns'] },
+                { title: 'DHCP', desc: 'Dynamic IP assignment', tags: ['networking', 'dhcp'] }
+            ]},
+            { day: 8, phase: 'foundation', title: 'Networking Tools', topics: [
+                { title: 'ping & traceroute', desc: 'Network connectivity testing', tags: ['networking', 'tools'] },
+                { title: 'netstat & ss', desc: 'Network statistics', tags: ['networking', 'tools'] },
+                { title: 'nslookup & dig', desc: 'DNS querying tools', tags: ['networking', 'dns'] },
+                { title: 'ipconfig & ifconfig', desc: 'Interface configuration', tags: ['networking', 'tools'] }
+            ]},
+            { day: 9, phase: 'foundation', title: 'Introduction to Cryptography', topics: [
+                { title: 'Encryption Basics', desc: 'Symmetric vs Asymmetric encryption', tags: ['crypto', 'theory'] },
+                { title: 'Hashing Algorithms', desc: 'MD5, SHA-1, SHA-256', tags: ['crypto', 'hashing'] },
+                { title: 'Digital Signatures', desc: 'Authentication and integrity', tags: ['crypto', 'signatures'] },
+                { title: 'Certificates & PKI', desc: 'Public Key Infrastructure', tags: ['crypto', 'pki'] }
+            ]},
+            { day: 10, phase: 'foundation', title: 'Security Terminology', topics: [
+                { title: 'Vulnerability vs Threat vs Risk', desc: 'Understanding key differences', tags: ['theory', 'terminology'] },
+                { title: 'Attack Vectors', desc: 'Common methods of attack', tags: ['attacks', 'theory'] },
+                { title: 'Security Controls', desc: 'Preventive, Detective, Corrective', tags: ['controls', 'theory'] },
+                { title: 'Defense in Depth', desc: 'Layered security approach', tags: ['strategy', 'theory'] }
+            ]},
+            { day: 11, phase: 'foundation', title: 'Malware Fundamentals', topics: [
+                { title: 'Types of Malware', desc: 'Virus, Worm, Trojan, Ransomware', tags: ['malware', 'threats'] },
+                { title: 'Malware Delivery Methods', desc: 'Email, downloads, exploits', tags: ['malware', 'delivery'] },
+                { title: 'Antivirus & EDR', desc: 'Detection and response tools', tags: ['malware', 'defense'] },
+                { title: 'Sandboxing', desc: 'Safe malware analysis environment', tags: ['malware', 'analysis'] }
+            ]},
+            { day: 12, phase: 'foundation', title: 'Social Engineering', topics: [
+                { title: 'Phishing Attacks', desc: 'Email, SMS, voice phishing', tags: ['social', 'phishing'] },
+                { title: 'Pretexting & Baiting', desc: 'Manipulation techniques', tags: ['social', 'attacks'] },
+                { title: 'Physical Social Engineering', desc: 'Tailgating, impersonation', tags: ['social', 'physical'] },
+                { title: 'Defense Strategies', desc: 'Awareness and training', tags: ['social', 'defense'] }
+            ]},
+            { day: 13, phase: 'foundation', title: 'Password Security', topics: [
+                { title: 'Password Best Practices', desc: 'Length, complexity, uniqueness', tags: ['auth', 'passwords'] },
+                { title: 'Password Attacks', desc: 'Brute force, dictionary, rainbow tables', tags: ['attacks', 'passwords'] },
+                { title: 'Password Managers', desc: 'Tools and best practices', tags: ['tools', 'passwords'] },
+                { title: 'Multi-Factor Authentication', desc: '2FA, MFA implementation', tags: ['auth', 'mfa'] }
+            ]},
+            { day: 14, phase: 'foundation', title: 'Web Basics - HTTP/HTTPS', topics: [
+                { title: 'HTTP Protocol', desc: 'Request/response model', tags: ['web', 'http'] },
+                { title: 'HTTP Methods', desc: 'GET, POST, PUT, DELETE', tags: ['web', 'http'] },
+                { title: 'HTTPS & TLS', desc: 'Secure communication', tags: ['web', 'security'] },
+                { title: 'HTTP Headers', desc: 'Common headers and their purpose', tags: ['web', 'headers'] }
+            ]},
+            { day: 15, phase: 'foundation', title: 'Browser Security', topics: [
+                { title: 'Browser DevTools', desc: 'Network, Console, Elements tabs', tags: ['web', 'tools'] },
+                { title: 'Cookies & Sessions', desc: 'Understanding web state', tags: ['web', 'sessions'] },
+                { title: 'Local Storage', desc: 'localStorage, sessionStorage', tags: ['web', 'storage'] },
+                { title: 'Browser Extensions Security', desc: 'Risks and best practices', tags: ['web', 'security'] }
+            ]},
+            { day: 16, phase: 'foundation', title: 'Introduction to OWASP', topics: [
+                { title: 'OWASP Top 10 Overview', desc: 'Most critical web vulnerabilities', tags: ['owasp', 'web'] },
+                { title: 'OWASP Testing Guide', desc: 'Methodology for security testing', tags: ['owasp', 'testing'] },
+                { title: 'OWASP Cheat Sheets', desc: 'Quick reference guides', tags: ['owasp', 'reference'] },
+                { title: 'OWASP ZAP Introduction', desc: 'Web application scanner', tags: ['owasp', 'tools'] }
+            ]},
+            { day: 17, phase: 'foundation', title: 'Virtualization & Containers', topics: [
+                { title: 'VirtualBox/VMware Setup', desc: 'Creating secure lab environment', tags: ['virtualization', 'setup'] },
+                { title: 'Docker Basics', desc: 'Container fundamentals', tags: ['containers', 'docker'] },
+                { title: 'Docker for Security', desc: 'Security testing containers', tags: ['containers', 'security'] },
+                { title: 'Snapshot Management', desc: 'VM state preservation', tags: ['virtualization', 'management'] }
+            ]},
+            { day: 18, phase: 'foundation', title: 'Lab Environment Setup', topics: [
+                { title: 'Kali Linux Configuration', desc: 'Optimizing for security testing', tags: ['kali', 'setup'] },
+                { title: 'Target VMs Setup', desc: 'DVWA, Metasploitable, OWASP BWA', tags: ['lab', 'targets'] },
+                { title: 'Network Configuration', desc: 'Host-only, NAT, bridged networks', tags: ['networking', 'lab'] },
+                { title: 'Snapshot Strategy', desc: 'Safe testing practices', tags: ['lab', 'management'] }
+            ]},
+            { day: 19, phase: 'foundation', title: 'Information Gathering - Passive', topics: [
+                { title: 'Google Dorking', desc: 'Advanced search techniques', tags: ['recon', 'osint'] },
+                { title: 'WHOIS Lookup', desc: 'Domain registration info', tags: ['recon', 'domains'] },
+                { title: 'DNS Enumeration', desc: 'Subdomain discovery', tags: ['recon', 'dns'] },
+                { title: 'Social Media Recon', desc: 'OSINT from social platforms', tags: ['recon', 'osint'] }
+            ]},
+            { day: 20, phase: 'foundation', title: 'Information Gathering - Active', topics: [
+                { title: 'Nmap Basics', desc: 'Host discovery and port scanning', tags: ['recon', 'nmap'] },
+                { title: 'Nmap Scan Types', desc: 'SYN, TCP, UDP scans', tags: ['recon', 'nmap'] },
+                { title: 'Service Detection', desc: 'Version detection with -sV', tags: ['recon', 'nmap'] },
+                { title: 'Nmap Scripting Engine', desc: 'NSE scripts overview', tags: ['recon', 'nmap'] }
+            ]},
+
+            // Networking Phase (Days 21-40)
+            { day: 21, phase: 'networking', title: 'Advanced Nmap Techniques', topics: [
+                { title: 'OS Detection', desc: 'Fingerprinting with -O', tags: ['nmap', 'recon'] },
+                { title: 'Timing & Performance', desc: 'T0-T5 timing templates', tags: ['nmap', 'optimization'] },
+                { title: 'Firewall Evasion', desc: 'Fragmentation and decoys', tags: ['nmap', 'evasion'] },
+                { title: 'Output Formats', desc: 'XML, grepable, normal output', tags: ['nmap', 'output'] }
+            ]},
+            { day: 22, phase: 'networking', title: 'Network Scanning Tools', topics: [
+                { title: 'Masscan', desc: 'Fast port scanning', tags: ['scanning', 'tools'] },
+                { title: 'RustScan', desc: 'Modern fast scanner', tags: ['scanning', 'tools'] },
+                { title: 'Netcat', desc: 'Swiss army knife of networking', tags: ['networking', 'tools'] },
+                { title: 'Socat', desc: 'Advanced netcat alternative', tags: ['networking', 'tools'] }
+            ]},
+            { day: 23, phase: 'networking', title: 'Packet Analysis - Wireshark', topics: [
+                { title: 'Wireshark Interface', desc: 'Capturing and filtering', tags: ['wireshark', 'analysis'] },
+                { title: 'Display Filters', desc: 'Advanced filtering techniques', tags: ['wireshark', 'filters'] },
+                { title: 'Protocol Analysis', desc: 'TCP, UDP, HTTP analysis', tags: ['wireshark', 'protocols'] },
+                { title: 'Follow Streams', desc: 'Reconstructing conversations', tags: ['wireshark', 'analysis'] }
+            ]},
+            { day: 24, phase: 'networking', title: 'Packet Analysis - TShark', topics: [
+                { title: 'Command Line Capture', desc: 'TShark basics', tags: ['tshark', 'cli'] },
+                { title: 'Automated Analysis', desc: 'Scripting packet analysis', tags: ['tshark', 'automation'] },
+                { title: 'Export Options', desc: 'PCAP, CSV, JSON export', tags: ['tshark', 'export'] },
+                { title: 'Real-time Monitoring', desc: 'Live traffic analysis', tags: ['tshark', 'monitoring'] }
+            ]},
+            { day: 25, phase: 'networking', title: 'TCP/IP Deep Dive', topics: [
+                { title: 'TCP Handshake', desc: 'SYN, SYN-ACK, ACK process', tags: ['tcp', 'theory'] },
+                { title: 'TCP Flags', desc: 'SYN, ACK, FIN, RST, PSH, URG', tags: ['tcp', 'flags'] },
+                { title: 'TCP Sequence Numbers', desc: 'Understanding sequencing', tags: ['tcp', 'theory'] },
+                { title: 'TCP Windowing', desc: 'Flow control mechanisms', tags: ['tcp', 'performance'] }
+            ]},
+            { day: 26, phase: 'networking', title: 'Network Protocols', topics: [
+                { title: 'ARP Protocol', desc: 'Address Resolution Protocol', tags: ['protocols', 'arp'] },
+                { title: 'ICMP Protocol', desc: 'Ping and error messages', tags: ['protocols', 'icmp'] },
+                { title: 'DHCP Protocol', desc: 'Dynamic host configuration', tags: ['protocols', 'dhcp'] },
+                { title: 'SNMP Protocol', desc: 'Network management', tags: ['protocols', 'snmp'] }
+            ]},
+            { day: 27, phase: 'networking', title: 'Routing & Switching', topics: [
+                { title: 'Routing Basics', desc: 'Static vs dynamic routing', tags: ['routing', 'theory'] },
+                { title: 'Routing Protocols', desc: 'RIP, OSPF, BGP overview', tags: ['routing', 'protocols'] },
+                { title: 'VLANs', desc: 'Virtual LAN configuration', tags: ['switching', 'vlans'] },
+                { title: 'Switch Security', desc: 'Port security, DHCP snooping', tags: ['switching', 'security'] }
+            ]},
+            { day: 28, phase: 'networking', title: 'Firewall Fundamentals', topics: [
+                { title: 'Firewall Types', desc: 'Packet filter, stateful, proxy', tags: ['firewall', 'types'] },
+                { title: 'iptables Basics', desc: 'Linux firewall configuration', tags: ['firewall', 'linux'] },
+                { title: 'Firewall Rules', desc: 'Creating and managing rules', tags: ['firewall', 'rules'] },
+                { title: 'Firewall Logging', desc: 'Monitoring and analysis', tags: ['firewall', 'logging'] }
+            ]},
+            { day: 29, phase: 'networking', title: 'Network Security Tools', topics: [
+                { title: 'tcpdump', desc: 'Command line packet analyzer', tags: ['tools', 'analysis'] },
+                { title: 'ngrep', desc: 'Network grep utility', tags: ['tools', 'analysis'] },
+                { title: 'iftop', desc: 'Bandwidth monitoring', tags: ['tools', 'monitoring'] },
+                { title: 'nethogs', desc: 'Per-process bandwidth', tags: ['tools', 'monitoring'] }
+            ]},
+            { day: 30, phase: 'networking', title: 'Wireless Networking', topics: [
+                { title: 'WiFi Standards', desc: '802.11a/b/g/n/ac/ax', tags: ['wireless', 'standards'] },
+                { title: 'WiFi Security', desc: 'WEP, WPA, WPA2, WPA3', tags: ['wireless', 'security'] },
+                { title: 'Wireless Adapters', desc: 'Monitor mode setup', tags: ['wireless', 'hardware'] },
+                { title: 'WiFi Discovery', desc: 'Airodump-ng basics', tags: ['wireless', 'recon'] }
+            ]},
+            { day: 31, phase: 'networking', title: 'Wireless Attacks', topics: [
+                { title: 'WEP Cracking', desc: 'Legacy encryption attacks', tags: ['wireless', 'attacks'] },
+                { title: 'WPA/WPA2 Cracking', desc: 'Handshake capture and cracking', tags: ['wireless', 'attacks'] },
+                { title: 'Evil Twin Attack', desc: 'Rogue access point', tags: ['wireless', 'attacks'] },
+                { title: 'Deauthentication Attack', desc: 'Forcing reconnection', tags: ['wireless', 'attacks'] }
+            ]},
+            { day: 32, phase: 'networking', title: 'Network Services', topics: [
+                { title: 'SSH Service', desc: 'Secure shell configuration', tags: ['services', 'ssh'] },
+                { title: 'FTP Service', desc: 'File transfer protocols', tags: ['services', 'ftp'] },
+                { title: 'SMTP Service', desc: 'Email server basics', tags: ['services', 'smtp'] },
+                { title: 'SMB Service', desc: 'Windows file sharing', tags: ['services', 'smb'] }
+            ]},
+            { day: 33, phase: 'networking', title: 'Service Enumeration', topics: [
+                { title: 'SSH Enumeration', desc: 'Banner grabbing, user enum', tags: ['enumeration', 'ssh'] },
+                { title: 'FTP Enumeration', desc: 'Anonymous access, brute force', tags: ['enumeration', 'ftp'] },
+                { title: 'SMB Enumeration', desc: 'enum4linux, smbclient', tags: ['enumeration', 'smb'] },
+                { title: 'SNMP Enumeration', desc: 'snmpwalk, onesixtyone', tags: ['enumeration', 'snmp'] }
+            ]},
+            { day: 34, phase: 'networking', title: 'Proxy & Tunneling', topics: [
+                { title: 'Proxy Basics', desc: 'Forward and reverse proxies', tags: ['proxy', 'theory'] },
+                { title: 'Burp Suite Proxy', desc: 'Intercepting traffic', tags: ['proxy', 'burp'] },
+                { title: 'SSH Tunneling', desc: 'Local and remote port forwarding', tags: ['tunneling', 'ssh'] },
+                { title: 'Chisel & Ligolo', desc: 'Advanced tunneling tools', tags: ['tunneling', 'tools'] }
+            ]},
+            { day: 35, phase: 'networking', title: 'Load Balancers & WAF', topics: [
+                { title: 'Load Balancer Types', desc: 'Layer 4 vs Layer 7', tags: ['infrastructure', 'lb'] },
+                { title: 'WAF Fundamentals', desc: 'Web Application Firewall', tags: ['infrastructure', 'waf'] },
+                { title: 'WAF Bypass Techniques', desc: 'Evasion strategies', tags: ['waf', 'bypass'] },
+                { title: 'Cloud WAF', desc: 'AWS WAF, Cloudflare', tags: ['waf', 'cloud'] }
+            ]},
+            { day: 36, phase: 'networking', title: 'CDN & Cloud Networks', topics: [
+                { title: 'CDN Fundamentals', desc: 'Content Delivery Networks', tags: ['cloud', 'cdn'] },
+                { title: 'Cloud Networking', desc: 'VPC, subnets, security groups', tags: ['cloud', 'networking'] },
+                { title: 'AWS Networking', desc: 'VPC, Route53, CloudFront', tags: ['aws', 'networking'] },
+                { title: 'Azure Networking', desc: 'VNet, DNS, Traffic Manager', tags: ['azure', 'networking'] }
+            ]},
+            { day: 37, phase: 'networking', title: 'Network Segmentation', topics: [
+                { title: 'DMZ Design', desc: 'Demilitarized zone architecture', tags: ['architecture', 'dmz'] },
+                { title: 'Micro-segmentation', desc: 'Granular network isolation', tags: ['architecture', 'segmentation'] },
+                { title: 'Zero Trust Network', desc: 'Never trust, always verify', tags: ['architecture', 'zerotrust'] },
+                { title: 'Network Access Control', desc: 'NAC implementation', tags: ['architecture', 'nac'] }
+            ]},
+            { day: 38, phase: 'networking', title: 'Network Monitoring', topics: [
+                { title: 'SIEM Basics', desc: 'Security Information & Event Mgmt', tags: ['monitoring', 'siem'] },
+                { title: 'IDS/IPS', desc: 'Intrusion Detection/Prevention', tags: ['monitoring', 'ids'] },
+                { title: 'Splunk Basics', desc: 'Log analysis platform', tags: ['monitoring', 'splunk'] },
+                { title: 'ELK Stack', desc: 'Elasticsearch, Logstash, Kibana', tags: ['monitoring', 'elk'] }
+            ]},
+            { day: 39, phase: 'networking', title: 'Network Forensics', topics: [
+                { title: 'PCAP Analysis', desc: 'Forensic packet examination', tags: ['forensics', 'pcap'] },
+                { title: 'Network Timeline', desc: 'Reconstructing events', tags: ['forensics', 'timeline'] },
+                { title: 'Malware Traffic Analysis', desc: 'Identifying C2 communication', tags: ['forensics', 'malware'] },
+                { title: 'Data Exfiltration Detection', desc: 'Spotting data theft', tags: ['forensics', 'exfiltration'] }
+            ]},
+            { day: 40, phase: 'networking', title: 'Network Hardening', topics: [
+                { title: 'Secure Configuration', desc: 'Device hardening checklist', tags: ['hardening', 'network'] },
+                { title: 'Access Control Lists', desc: 'ACL implementation', tags: ['hardening', 'acl'] },
+                { title: 'Network Auditing', desc: 'Security assessment', tags: ['hardening', 'audit'] },
+                { title: 'Compliance Standards', desc: 'PCI-DSS, HIPAA networking', tags: ['hardening', 'compliance'] }
+            ]},
+
+            // Linux & Scripting Phase (Days 41-60)
+            { day: 41, phase: 'linux', title: 'Advanced Linux Commands', topics: [
+                { title: 'Advanced grep', desc: 'Regex patterns, context matching', tags: ['linux', 'grep'] },
+                { title: 'awk Basics', desc: 'Text processing and patterns', tags: ['linux', 'awk'] },
+                { title: 'sed Basics', desc: 'Stream editing', tags: ['linux', 'sed'] },
+                { title: 'cut & paste', desc: 'Column manipulation', tags: ['linux', 'text'] }
+            ]},
+            { day: 42, phase: 'linux', title: 'Shell Scripting - Part 1', topics: [
+                { title: 'Script Structure', desc: 'Shebang, comments, execution', tags: ['bash', 'scripting'] },
+                { title: 'Variables', desc: 'Declaration and usage', tags: ['bash', 'variables'] },
+                { title: 'User Input', desc: 'read command', tags: ['bash', 'input'] },
+                { title: 'Arithmetic', desc: 'Math operations in bash', tags: ['bash', 'arithmetic'] }
+            ]},
+            { day: 43, phase: 'linux', title: 'Shell Scripting - Part 2', topics: [
+                { title: 'Conditionals', desc: 'if, elif, else statements', tags: ['bash', 'conditionals'] },
+                { title: 'Test Commands', desc: '[ ], [[ ]], test', tags: ['bash', 'test'] },
+                { title: 'Case Statements', desc: 'Switch-case logic', tags: ['bash', 'case'] },
+                { title: 'Logical Operators', desc: 'AND, OR, NOT', tags: ['bash', 'operators'] }
+            ]},
+            { day: 44, phase: 'linux', title: 'Shell Scripting - Part 3', topics: [
+                { title: 'Loops - for', desc: 'Iterating over lists', tags: ['bash', 'loops'] },
+                { title: 'Loops - while', desc: 'Condition-based iteration', tags: ['bash', 'loops'] },
+                { title: 'Functions', desc: 'Reusable code blocks', tags: ['bash', 'functions'] },
+                { title: 'Script Debugging', desc: 'set -x, set -e', tags: ['bash', 'debugging'] }
+            ]},
+            { day: 45, phase: 'linux', title: 'Python for Security - Part 1', topics: [
+                { title: 'Python Setup', desc: 'Installation and virtualenv', tags: ['python', 'setup'] },
+                { title: 'Basic Syntax', desc: 'Variables, types, operators', tags: ['python', 'basics'] },
+                { title: 'Control Flow', desc: 'if, for, while', tags: ['python', 'control'] },
+                { title: 'Functions & Modules', desc: 'Code organization', tags: ['python', 'functions'] }
+            ]},
+            { day: 46, phase: 'linux', title: 'Python for Security - Part 2', topics: [
+                { title: 'File Operations', desc: 'Reading and writing files', tags: ['python', 'files'] },
+                { title: 'Exception Handling', desc: 'try, except, finally', tags: ['python', 'errors'] },
+                { title: 'Regular Expressions', desc: 're module', tags: ['python', 'regex'] },
+                { title: 'Working with APIs', desc: 'requests library', tags: ['python', 'api'] }
+            ]},
+            { day: 47, phase: 'linux', title: 'Python Security Tools', topics: [
+                { title: 'Port Scanner', desc: 'Building with socket', tags: ['python', 'tools'] },
+                { title: 'Password Cracker', desc: 'Hash comparison script', tags: ['python', 'tools'] },
+                { title: 'Directory Scanner', desc: 'Web path enumeration', tags: ['python', 'tools'] },
+                { title: 'Network Sniffer', desc: 'Basic packet capture', tags: ['python', 'tools'] }
+            ]},
+            { day: 48, phase: 'linux', title: 'Linux System Administration', topics: [
+                { title: 'System Services', desc: 'systemctl, service management', tags: ['linux', 'admin'] },
+                { title: 'Cron Jobs', desc: 'Scheduled task automation', tags: ['linux', 'cron'] },
+                { title: 'Log Management', desc: 'journalctl, log rotation', tags: ['linux', 'logs'] },
+                { title: 'Disk Management', desc: 'df, du, partitioning', tags: ['linux', 'storage'] }
+            ]},
+            { day: 49, phase: 'linux', title: 'Linux Security', topics: [
+                { title: 'SELinux/AppArmor', desc: 'Mandatory access control', tags: ['linux', 'security'] },
+                { title: 'Audit System', desc: 'auditd configuration', tags: ['linux', 'audit'] },
+                { title: 'File Integrity', desc: 'AIDE, Tripwire', tags: ['linux', 'integrity'] },
+                { title: 'Rootkit Detection', desc: 'rkhunter, chkrootkit', tags: ['linux', 'rootkits'] }
+            ]},
+            { day: 50, phase: 'linux', title: 'Privilege Escalation - Linux', topics: [
+                { title: 'SUID/SGID Binaries', desc: 'Finding and exploiting', tags: ['privesc', 'linux'] },
+                { title: 'Sudo Misconfigurations', desc: 'sudo -l exploitation', tags: ['privesc', 'sudo'] },
+                { title: 'Cron Jobs Exploitation', desc: 'Writable cron tasks', tags: ['privesc', 'cron'] },
+                { title: 'Kernel Exploits', desc: 'DirtyCow, overlayfs', tags: ['privesc', 'kernel'] }
+            ]},
+            { day: 51, phase: 'linux', title: 'Windows Fundamentals', topics: [
+                { title: 'Windows Architecture', desc: 'Kernel, user mode, processes', tags: ['windows', 'architecture'] },
+                { title: 'Windows File System', desc: 'NTFS, permissions, shares', tags: ['windows', 'filesystem'] },
+                { title: 'Registry Basics', desc: 'Hives and keys', tags: ['windows', 'registry'] },
+                { title: 'Windows Services', desc: 'Service management', tags: ['windows', 'services'] }
+            ]},
+            { day: 52, phase: 'linux', title: 'Windows Command Line', topics: [
+                { title: 'CMD Basics', desc: 'Essential commands', tags: ['windows', 'cmd'] },
+                { title: 'PowerShell Basics', desc: 'Cmdlets and pipelines', tags: ['windows', 'powershell'] },
+                { title: 'PowerShell Scripting', desc: 'Automation scripts', tags: ['windows', 'powershell'] },
+                { title: 'Windows Management', desc: 'WMIC, systeminfo', tags: ['windows', 'management'] }
+            ]},
+            { day: 53, phase: 'linux', title: 'Active Directory - Part 1', topics: [
+                { title: 'AD Concepts', desc: 'Domains, forests, trees', tags: ['ad', 'concepts'] },
+                { title: 'AD Objects', desc: 'Users, groups, computers', tags: ['ad', 'objects'] },
+                { title: 'Group Policy', desc: 'GPO basics', tags: ['ad', 'gpo'] },
+                { title: 'AD Authentication', desc: 'Kerberos, NTLM', tags: ['ad', 'auth'] }
+            ]},
+            { day: 54, phase: 'linux', title: 'Active Directory - Part 2', topics: [
+                { title: 'AD Enumeration', desc: 'BloodHound, PowerView', tags: ['ad', 'enumeration'] },
+                { title: 'Kerberos Attacks', desc: 'Ticket manipulation', tags: ['ad', 'kerberos'] },
+                { title: 'Pass-the-Hash', desc: 'Credential relay attacks', tags: ['ad', 'attacks'] },
+                { title: 'Golden/Silver Tickets', desc: 'Forging authentication', tags: ['ad', 'attacks'] }
+            ]},
+            { day: 55, phase: 'linux', title: 'Windows Privilege Escalation', topics: [
+                { title: 'Enumeration Scripts', desc: 'WinPEAS, PowerUp', tags: ['privesc', 'windows'] },
+                { title: 'Service Exploitation', desc: 'Unquoted paths, weak perms', tags: ['privesc', 'services'] },
+                { title: 'DLL Hijacking', desc: 'Dynamic library exploitation', tags: ['privesc', 'dll'] },
+                { title: 'Token Manipulation', desc: 'Incognito, impersonation', tags: ['privesc', 'tokens'] }
+            ]},
+            { day: 56, phase: 'linux', title: 'Git & Version Control', topics: [
+                { title: 'Git Basics', desc: 'clone, commit, push, pull', tags: ['git', 'basics'] },
+                { title: 'Git Security', desc: 'Sensitive data in repos', tags: ['git', 'security'] },
+                { title: 'GitHub Recon', desc: 'Finding exposed secrets', tags: ['git', 'recon'] },
+                { title: 'Git Tools', desc: 'truffleHog, gitrob', tags: ['git', 'tools'] }
+            ]},
+            { day: 57, phase: 'linux', title: 'API Security', topics: [
+                { title: 'REST API Basics', desc: 'Endpoints, methods, status codes', tags: ['api', 'rest'] },
+                { title: 'API Authentication', desc: 'API keys, OAuth, JWT', tags: ['api', 'auth'] },
+                { title: 'API Testing', desc: 'Postman, Burp extensions', tags: ['api', 'testing'] },
+                { title: 'API Vulnerabilities', desc: 'BOLA, BFLA, mass assignment', tags: ['api', 'vulnerabilities'] }
+            ]},
+            { day: 58, phase: 'linux', title: 'Database Security', topics: [
+                { title: 'SQL Basics', desc: 'SELECT, INSERT, UPDATE, DELETE', tags: ['database', 'sql'] },
+                { title: 'MySQL Security', desc: 'Configuration and hardening', tags: ['database', 'mysql'] },
+                { title: 'PostgreSQL Security', desc: 'Roles and permissions', tags: ['database', 'postgresql'] },
+                { title: 'NoSQL Security', desc: 'MongoDB, Redis security', tags: ['database', 'nosql'] }
+            ]},
+            { day: 59, phase: 'linux', title: 'Automation with n8n', topics: [
+                { title: 'n8n Setup', desc: 'Installation and configuration', tags: ['n8n', 'setup'] },
+                { title: 'Workflow Creation', desc: 'Building automation flows', tags: ['n8n', 'workflows'] },
+                { title: 'API Integration', desc: 'Connecting security tools', tags: ['n8n', 'api'] },
+                { title: 'Security Automation', desc: 'Alerting and response', tags: ['n8n', 'security'] }
+            ]},
+            { day: 60, phase: 'linux', title: 'DevSecOps Fundamentals', topics: [
+                { title: 'CI/CD Security', desc: 'Secure pipeline design', tags: ['devsecops', 'cicd'] },
+                { title: 'Container Security', desc: 'Docker security best practices', tags: ['devsecops', 'containers'] },
+                { title: 'Infrastructure as Code', desc: 'Terraform, CloudFormation security', tags: ['devsecops', 'iac'] },
+                { title: 'Security Scanning', desc: 'SAST, DAST, SCA tools', tags: ['devsecops', 'scanning'] }
+            ]},
+
+            // Web Security Phase (Days 61-80)
+            { day: 61, phase: 'web', title: 'SQL Injection - Part 1', topics: [
+                { title: 'SQLi Fundamentals', desc: 'Understanding the vulnerability', tags: ['sqli', 'web'] },
+                { title: 'Error-Based SQLi', desc: 'Extracting data via errors', tags: ['sqli', 'techniques'] },
+                { title: 'Union-Based SQLi', desc: 'Combining query results', tags: ['sqli', 'techniques'] },
+                { title: 'SQLmap Basics', desc: 'Automated SQL injection', tags: ['sqli', 'tools'] }
+            ]},
+            { day: 62, phase: 'web', title: 'SQL Injection - Part 2', topics: [
+                { title: 'Blind SQLi', desc: 'Boolean-based techniques', tags: ['sqli', 'blind'] },
+                { title: 'Time-Based SQLi', desc: 'Delayed response detection', tags: ['sqli', 'blind'] },
+                { title: 'Out-of-Band SQLi', desc: 'DNS/HTTP exfiltration', tags: ['sqli', 'oob'] },
+                { title: 'SQLi Prevention', desc: 'Prepared statements, ORM', tags: ['sqli', 'defense'] }
+            ]},
+            { day: 63, phase: 'web', title: 'XSS - Cross-Site Scripting', topics: [
+                { title: 'Reflected XSS', desc: 'Immediate execution', tags: ['xss', 'reflected'] },
+                { title: 'Stored XSS', desc: 'Persistent injection', tags: ['xss', 'stored'] },
+                { title: 'DOM-Based XSS', desc: 'Client-side vulnerability', tags: ['xss', 'dom'] },
+                { title: 'XSS Payloads', desc: 'Common vectors and bypasses', tags: ['xss', 'payloads'] }
+            ]},
+            { day: 64, phase: 'web', title: 'XSS Advanced Techniques', topics: [
+                { title: 'XSS Filters Evasion', desc: 'Bypassing WAF and filters', tags: ['xss', 'evasion'] },
+                { title: 'BeEF Framework', desc: 'Browser exploitation', tags: ['xss', 'tools'] },
+                { title: 'XSS to Account Takeover', desc: 'Session hijacking', tags: ['xss', 'impact'] },
+                { title: 'XSS Prevention', desc: 'CSP, encoding, validation', tags: ['xss', 'defense'] }
+            ]},
+            { day: 65, phase: 'web', title: 'CSRF & SSRF', topics: [
+                { title: 'CSRF Fundamentals', desc: 'Cross-Site Request Forgery', tags: ['csrf', 'web'] },
+                { title: 'CSRF Exploitation', desc: 'Crafting attack payloads', tags: ['csrf', 'attacks'] },
+                { title: 'SSRF Basics', desc: 'Server-Side Request Forgery', tags: ['ssrf', 'web'] },
+                { title: 'SSRF Advanced', desc: 'Internal network access', tags: ['ssrf', 'attacks'] }
+            ]},
+            { day: 66, phase: 'web', title: 'File Upload Vulnerabilities', topics: [
+                { title: 'Upload Bypass Techniques', desc: 'Extension, MIME, magic bytes', tags: ['upload', 'bypass'] },
+                { title: 'Web Shells', desc: 'PHP, ASP, JSP shells', tags: ['upload', 'shells'] },
+                { title: 'Upload Filter Evasion', desc: 'Bypassing validation', tags: ['upload', 'evasion'] },
+                { title: 'Upload Prevention', desc: 'Secure implementation', tags: ['upload', 'defense'] }
+            ]},
+            { day: 67, phase: 'web', title: 'Command Injection', topics: [
+                { title: 'OS Command Injection', desc: 'Executing system commands', tags: ['cmdi', 'web'] },
+                { title: 'Blind Command Injection', desc: 'No output exploitation', tags: ['cmdi', 'blind'] },
+                { title: 'Command Chaining', desc: 'Pipes and redirects', tags: ['cmdi', 'techniques'] },
+                { title: 'Command Injection Prevention', desc: 'Input validation, escaping', tags: ['cmdi', 'defense'] }
+            ]},
+            { day: 68, phase: 'web', title: 'File Inclusion Vulnerabilities', topics: [
+                { title: 'Local File Inclusion', desc: 'LFI exploitation', tags: ['lfi', 'web'] },
+                { title: 'Remote File Inclusion', desc: 'RFI exploitation', tags: ['rfi', 'web'] },
+                { title: 'LFI to RCE', desc: 'Log poisoning, proc methods', tags: ['lfi', 'rce'] },
+                { title: 'File Inclusion Prevention', desc: 'Whitelisting, disable wrappers', tags: ['lfi', 'defense'] }
+            ]},
+            { day: 69, phase: 'web', title: 'Authentication Attacks', topics: [
+                { title: 'Credential Stuffing', desc: 'Using leaked credentials', tags: ['auth', 'attacks'] },
+                { title: 'Password Spraying', desc: 'Low-volume brute force', tags: ['auth', 'attacks'] },
+                { title: 'Session Fixation', desc: 'Forcing session IDs', tags: ['auth', 'sessions'] },
+                { title: 'Authentication Bypass', desc: 'Logic flaws and errors', tags: ['auth', 'bypass'] }
+            ]},
+            { day: 70, phase: 'web', title: 'Authorization Attacks', topics: [
+                { title: 'IDOR Vulnerabilities', desc: 'Insecure Direct Object Reference', tags: ['idor', 'web'] },
+                { title: 'Privilege Escalation', desc: 'Vertical and horizontal', tags: ['authz', 'privesc'] },
+                { title: 'Access Control Testing', desc: 'Methodology and tools', tags: ['authz', 'testing'] },
+                { title: 'Authorization Best Practices', desc: 'RBAC, ABAC implementation', tags: ['authz', 'defense'] }
+            ]},
+            { day: 71, phase: 'web', title: 'Business Logic Vulnerabilities', topics: [
+                { title: 'Logic Flaw Identification', desc: 'Finding business logic bugs', tags: ['logic', 'web'] },
+                { title: 'Race Conditions', desc: 'TOCTOU vulnerabilities', tags: ['logic', 'race'] },
+                { title: 'Payment Bypass', desc: 'E-commerce vulnerabilities', tags: ['logic', 'payment'] },
+                { title: 'Workflow Bypass', desc: 'Skipping process steps', tags: ['logic', 'workflow'] }
+            ]},
+            { day: 72, phase: 'web', title: 'XXE Injection', topics: [
+                { title: 'XXE Fundamentals', desc: 'XML External Entity', tags: ['xxe', 'web'] },
+                { title: 'XXE Exploitation', desc: 'File read, SSRF, RCE', tags: ['xxe', 'attacks'] },
+                { title: 'Blind XXE', desc: 'Out-of-band techniques', tags: ['xxe', 'blind'] },
+                { title: 'XXE Prevention', desc: 'Disabling external entities', tags: ['xxe', 'defense'] }
+            ]},
+            { day: 73, phase: 'web', title: 'Deserialization Attacks', topics: [
+                { title: 'Insecure Deserialization', desc: 'Understanding the vulnerability', tags: ['deserial', 'web'] },
+                { title: 'PHP Deserialization', desc: 'Object injection', tags: ['deserial', 'php'] },
+                { title: 'Java Deserialization', desc: 'Common gadgets', tags: ['deserial', 'java'] },
+                { title: 'Deserialization Prevention', desc: 'Safe parsing practices', tags: ['deserial', 'defense'] }
+            ]},
+            { day: 74, phase: 'web', title: 'Template Injection', topics: [
+                { title: 'SSTI Basics', desc: 'Server-Side Template Injection', tags: ['ssti', 'web'] },
+                { title: 'SSTI Detection', desc: 'Polyglot payloads', tags: ['ssti', 'detection'] },
+                { title: 'SSTI Exploitation', desc: 'RCE via templates', tags: ['ssti', 'attacks'] },
+                { title: 'SSTI Prevention', desc: 'Sandboxing templates', tags: ['ssti', 'defense'] }
+            ]},
+            { day: 75, phase: 'web', title: 'Web Sockets Security', topics: [
+                { title: 'WebSocket Basics', desc: 'Protocol overview', tags: ['websocket', 'web'] },
+                { title: 'WebSocket Testing', desc: 'Burp extensions, wscat', tags: ['websocket', 'testing'] },
+                { title: 'WebSocket Vulnerabilities', desc: 'Common attack vectors', tags: ['websocket', 'attacks'] },
+                { title: 'WebSocket Security', desc: 'Origin validation, encryption', tags: ['websocket', 'defense'] }
+            ]},
+            { day: 76, phase: 'web', title: 'GraphQL Security', topics: [
+                { title: 'GraphQL Fundamentals', desc: 'Schema, queries, mutations', tags: ['graphql', 'web'] },
+                { title: 'GraphQL Enumeration', desc: 'Introspection queries', tags: ['graphql', 'recon'] },
+                { title: 'GraphQL Attacks', desc: 'DoS, injection, authorization', tags: ['graphql', 'attacks'] },
+                { title: 'GraphQL Security', desc: 'Query depth limiting, auth', tags: ['graphql', 'defense'] }
+            ]},
+            { day: 77, phase: 'web', title: 'CORS & CSP', topics: [
+                { title: 'CORS Fundamentals', desc: 'Cross-Origin Resource Sharing', tags: ['cors', 'web'] },
+                { title: 'CORS Misconfigurations', desc: 'Exploiting weak policies', tags: ['cors', 'attacks'] },
+                { title: 'CSP Basics', desc: 'Content Security Policy', tags: ['csp', 'web'] },
+                { title: 'CSP Bypass', desc: 'Finding weaknesses', tags: ['csp', 'bypass'] }
+            ]},
+            { day: 78, phase: 'web', title: 'JWT Security', topics: [
+                { title: 'JWT Structure', desc: 'Header, payload, signature', tags: ['jwt', 'web'] },
+                { title: 'JWT Attacks', desc: 'None algorithm, key confusion', tags: ['jwt', 'attacks'] },
+                { title: 'JWT Cracking', desc: 'Brute forcing secrets', tags: ['jwt', 'cracking'] },
+                { title: 'JWT Best Practices', desc: 'Secure implementation', tags: ['jwt', 'defense'] }
+            ]},
+            { day: 79, phase: 'web', title: 'Web Reconnaissance', topics: [
+                { title: 'Subdomain Enumeration', desc: 'Sublist3r, amass, assetfinder', tags: ['recon', 'web'] },
+                { title: 'Directory Bruteforce', desc: 'gobuster, dirb, ffuf', tags: ['recon', 'directories'] },
+                { title: 'Technology Detection', desc: 'Wappalyzer, whatweb', tags: ['recon', 'tech'] },
+                { title: 'Archive Recon', desc: 'Wayback Machine, archive.org', tags: ['recon', 'archives'] }
+            ]},
+            { day: 80, phase: 'web', title: 'Web Application Firewall', topics: [
+                { title: 'WAF Detection', desc: 'Identifying WAF presence', tags: ['waf', 'detection'] },
+                { title: 'WAF Fingerprinting', desc: 'Determining WAF type', tags: ['waf', 'fingerprint'] },
+                { title: 'WAF Bypass Methods', desc: 'Encoding, fragmentation', tags: ['waf', 'bypass'] },
+                { title: 'WAF Configuration', desc: 'ModSecurity rules', tags: ['waf', 'configuration'] }
+            ]},
+
+            // Advanced & Bug Bounty Phase (Days 81-100)
+            { day: 81, phase: 'advanced', title: 'Burp Suite - Part 1', topics: [
+                { title: 'Burp Setup', desc: 'Installation and configuration', tags: ['burp', 'setup'] },
+                { title: 'Proxy Configuration', desc: 'Browser and certificate setup', tags: ['burp', 'proxy'] },
+                { title: 'Repeater Tool', desc: 'Manual request manipulation', tags: ['burp', 'repeater'] },
+                { title: 'Intruder Tool', desc: 'Automated attacks', tags: ['burp', 'intruder'] }
+            ]},
+            { day: 82, phase: 'advanced', title: 'Burp Suite - Part 2', topics: [
+                { title: 'Scanner Tool', desc: 'Automated vulnerability scanning', tags: ['burp', 'scanner'] },
+                { title: 'Sequencer Tool', desc: 'Token randomness analysis', tags: ['burp', 'sequencer'] },
+                { title: 'Decoder & Comparer', desc: 'Encoding and diff analysis', tags: ['burp', 'tools'] },
+                { title: 'Burp Extensions', desc: 'BApp Store essentials', tags: ['burp', 'extensions'] }
+            ]},
+            { day: 83, phase: 'advanced', title: 'Metasploit Framework', topics: [
+                { title: 'Metasploit Basics', desc: 'msfconsole navigation', tags: ['metasploit', 'basics'] },
+                { title: 'Exploit Selection', desc: 'Searching and using exploits', tags: ['metasploit', 'exploits'] },
+                { title: 'Payloads', desc: 'Generating and using payloads', tags: ['metasploit', 'payloads'] },
+                { title: 'Post-Exploitation', desc: 'Meterpreter modules', tags: ['metasploit', 'post'] }
+            ]},
+            { day: 84, phase: 'advanced', title: 'Exploit Development - Part 1', topics: [
+                { title: 'Buffer Overflow Basics', desc: 'Stack-based overflow', tags: ['exploit', 'bof'] },
+                { title: 'Debugging with GDB', desc: 'Analyzing crashes', tags: ['exploit', 'debugging'] },
+                { title: 'Shellcode Basics', desc: 'Understanding payload structure', tags: ['exploit', 'shellcode'] },
+                { title: 'ASLR & DEP', desc: 'Modern protections', tags: ['exploit', 'protections'] }
+            ]},
+            { day: 85, phase: 'advanced', title: 'Exploit Development - Part 2', topics: [
+                { title: 'ROP Chains', desc: 'Return-Oriented Programming', tags: ['exploit', 'rop'] },
+                { title: 'Heap Exploitation', desc: 'Heap-based vulnerabilities', tags: ['exploit', 'heap'] },
+                { title: 'Format String Bugs', desc: 'Printf vulnerabilities', tags: ['exploit', 'format'] },
+                { title: 'Use-After-Free', desc: 'Memory corruption', tags: ['exploit', 'uaf'] }
+            ]},
+            { day: 86, phase: 'advanced', title: 'Reverse Engineering - Part 1', topics: [
+                { title: 'Assembly Basics', desc: 'x86/x64 fundamentals', tags: ['re', 'assembly'] },
+                { title: 'Static Analysis', desc: 'Examining binaries', tags: ['re', 'static'] },
+                { title: 'Dynamic Analysis', desc: 'Runtime examination', tags: ['re', 'dynamic'] },
+                { title: 'Ghidra Basics', desc: 'NSA reverse engineering tool', tags: ['re', 'ghidra'] }
+            ]},
+            { day: 87, phase: 'advanced', title: 'Reverse Engineering - Part 2', topics: [
+                { title: 'IDA Pro Basics', desc: 'Interactive Disassembler', tags: ['re', 'ida'] },
+                { title: 'x64dbg/OllyDbg', desc: 'Windows debugging', tags: ['re', 'debugging'] },
+                { title: 'Unpacking Malware', desc: 'Removing packers', tags: ['re', 'unpacking'] },
+                { title: 'Crackmes Practice', desc: 'Reverse engineering challenges', tags: ['re', 'practice'] }
+            ]},
+            { day: 88, phase: 'advanced', title: 'Mobile Security - Android', topics: [
+                { title: 'Android Architecture', desc: 'App structure and components', tags: ['mobile', 'android'] },
+                { title: 'APK Analysis', desc: 'Decompiling and examining', tags: ['mobile', 'apk'] },
+                { title: 'Android Vulnerabilities', desc: 'Common mobile security issues', tags: ['mobile', 'vulnerabilities'] },
+                { title: 'MobSF', desc: 'Mobile Security Framework', tags: ['mobile', 'tools'] }
+            ]},
+            { day: 89, phase: 'advanced', title: 'Mobile Security - iOS', topics: [
+                { title: 'iOS Architecture', desc: 'App sandbox and security', tags: ['mobile', 'ios'] },
+                { title: 'IPA Analysis', desc: 'iOS app examination', tags: ['mobile', 'ipa'] },
+                { title: 'iOS Vulnerabilities', desc: 'Common iOS security issues', tags: ['mobile', 'vulnerabilities'] },
+                { title: 'Frida', desc: 'Dynamic instrumentation', tags: ['mobile', 'frida'] }
+            ]},
+            { day: 90, phase: 'advanced', title: 'Cloud Security - AWS', topics: [
+                { title: 'AWS IAM', desc: 'Identity and Access Management', tags: ['cloud', 'aws'] },
+                { title: 'S3 Security', desc: 'Bucket policies and exposure', tags: ['cloud', 's3'] },
+                { title: 'EC2 Security', desc: 'Instance hardening', tags: ['cloud', 'ec2'] },
+                { title: 'AWS Enumeration', desc: 'Pacu, ScoutSuite', tags: ['cloud', 'enumeration'] }
+            ]},
+            { day: 91, phase: 'advanced', title: 'Cloud Security - Azure & GCP', topics: [
+                { title: 'Azure AD', desc: 'Active Directory in cloud', tags: ['cloud', 'azure'] },
+                { title: 'Azure Storage', desc: 'Blob and file security', tags: ['cloud', 'azure'] },
+                { title: 'GCP Security', desc: 'Google Cloud Platform', tags: ['cloud', 'gcp'] },
+                { title: 'Cloud Misconfigurations', desc: 'Common cloud vulnerabilities', tags: ['cloud', 'misconfig'] }
+            ]},
+            { day: 92, phase: 'advanced', title: 'Container Security', topics: [
+                { title: 'Docker Security', desc: 'Container hardening', tags: ['containers', 'docker'] },
+                { title: 'Kubernetes Security', desc: 'Cluster security', tags: ['containers', 'k8s'] },
+                { title: 'Container Escapes', desc: 'Breaking out of containers', tags: ['containers', 'escape'] },
+                { title: 'Container Scanning', desc: 'Trivy, Clair', tags: ['containers', 'scanning'] }
+            ]},
+            { day: 93, phase: 'advanced', title: 'IoT Security', topics: [
+                { title: 'IoT Architecture', desc: 'Device and network layers', tags: ['iot', 'architecture'] },
+                { title: 'Firmware Analysis', desc: 'Binwalk, firmware extraction', tags: ['iot', 'firmware'] },
+                { title: 'Hardware Hacking', desc: 'UART, JTAG, SPI', tags: ['iot', 'hardware'] },
+                { title: 'IoT Protocols', desc: 'MQTT, CoAP, Zigbee', tags: ['iot', 'protocols'] }
+            ]},
+            { day: 94, phase: 'advanced', title: 'Red Team Operations', topics: [
+                { title: 'Kill Chain', desc: 'Cyber Kill Chain model', tags: ['redteam', 'methodology'] },
+                { title: 'MITRE ATT&CK', desc: 'Adversary tactics and techniques', tags: ['redteam', 'mitre'] },
+                { title: 'C2 Frameworks', desc: 'Cobalt Strike, Empire', tags: ['redteam', 'c2'] },
+                { title: 'Lateral Movement', desc: 'Pivoting through networks', tags: ['redteam', 'lateral'] }
+            ]},
+            { day: 95, phase: 'advanced', title: 'Blue Team Defense', topics: [
+                { title: 'Threat Intelligence', desc: 'TI feeds and analysis', tags: ['blueteam', 'threatintel'] },
+                { title: 'Incident Response', desc: 'IR process and procedures', tags: ['blueteam', 'ir'] },
+                { title: 'Digital Forensics', desc: 'Evidence collection', tags: ['blueteam', 'forensics'] },
+                { title: 'Threat Hunting', desc: 'Proactive threat detection', tags: ['blueteam', 'hunting'] }
+            ]},
+            { day: 96, phase: 'advanced', title: 'Bug Bounty - Part 1', topics: [
+                { title: 'Bug Bounty Platforms', desc: 'HackerOne, Bugcrowd, Intigriti', tags: ['bugbounty', 'platforms'] },
+                { title: 'Program Selection', desc: 'Choosing right targets', tags: ['bugbounty', 'selection'] },
+                { title: 'Recon Methodology', desc: 'Comprehensive target mapping', tags: ['bugbounty', 'recon'] },
+                { title: 'Vulnerability Hunting', desc: 'Systematic approach', tags: ['bugbounty', 'hunting'] }
+            ]},
+            { day: 97, phase: 'advanced', title: 'Bug Bounty - Part 2', topics: [
+                { title: 'Report Writing', desc: 'Professional vulnerability reports', tags: ['bugbounty', 'reporting'] },
+                { title: 'Duplicate Prevention', desc: 'Finding unique bugs', tags: ['bugbounty', 'strategy'] },
+                { title: 'Responsible Disclosure', desc: 'Ethical reporting', tags: ['bugbounty', 'ethics'] },
+                { title: 'Bounty Negotiation', desc: 'Maximizing rewards', tags: ['bugbounty', 'negotiation'] }
+            ]},
+            { day: 98, phase: 'advanced', title: 'Capture The Flag', topics: [
+                { title: 'CTF Categories', desc: 'Web, Crypto, Pwn, Rev, Forensics', tags: ['ctf', 'categories'] },
+                { title: 'CTF Platforms', desc: 'HackTheBox, TryHackMe, CTFtime', tags: ['ctf', 'platforms'] },
+                { title: 'CTF Methodology', desc: 'Systematic approach', tags: ['ctf', 'methodology'] },
+                { title: 'Write-up Writing', desc: 'Documenting solutions', tags: ['ctf', 'writeups'] }
+            ]},
+            { day: 99, phase: 'advanced', title: 'Career Development', topics: [
+                { title: 'Certifications', desc: 'OSCP, CEH, CISSP, Security+', tags: ['career', 'certs'] },
+                { title: 'Building Portfolio', desc: 'GitHub, blog, write-ups', tags: ['career', 'portfolio'] },
+                { title: 'Networking', desc: 'Conferences, communities', tags: ['career', 'networking'] },
+                { title: 'Interview Prep', desc: 'Technical interview questions', tags: ['career', 'interview'] }
+            ]},
+            { day: 100, phase: 'advanced', title: 'Continuous Learning', topics: [
+                { title: 'Security News', desc: 'Following industry updates', tags: ['learning', 'news'] },
+                { title: 'Practice Platforms', desc: 'PentesterLab, PortSwigger', tags: ['learning', 'practice'] },
+                { title: 'Community Engagement', desc: 'Discord, Twitter, Reddit', tags: ['learning', 'community'] },
+                { title: 'Next Steps', desc: 'Specialization paths', tags: ['learning', 'career'] }
+            ]}
+        ];
+
+        // State Management
+        let completedDays = new Set();
+        let completedTopics = new Set();
+        let currentFilter = 'all';
+        let expandedDays = new Set();
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProgress();
+            renderDays();
+            updateProgress();
+            setupEventListeners();
+        });
+
+        // Render Days Grid
+        function renderDays(filter = 'all', search = '') {
+            const grid = document.getElementById('daysGrid');
+            grid.innerHTML = '';
+
+            const filteredData = roadmapData.filter(day => {
+                const phaseMatch = filter === 'all' || day.phase === filter;
+                const searchMatch = search === '' || 
+                    day.title.toLowerCase().includes(search.toLowerCase()) ||
+                    day.topics.some(t => t.title.toLowerCase().includes(search.toLowerCase()));
+                return phaseMatch && searchMatch;
+            });
+
+            filteredData.forEach(day => {
+                const isCompleted = completedDays.has(day.day);
+                const isExpanded = expandedDays.has(day.day);
+                
+                const card = document.createElement('div');
+                card.className = `day-card ${isCompleted ? 'completed' : ''} ${isExpanded ? 'expanded' : ''}`;
+                card.dataset.day = day.day;
+
+                card.innerHTML = `
+                    <div class="day-header" onclick="toggleDay(${day.day})">
+                        <div class="day-info">
+                            <div class="day-number">${day.day}</div>
+                            <div>
+                                <div class="day-title">${day.title}</div>
+                                <div class="day-phase">${day.phase.toUpperCase()}</div>
+                            </div>
+                        </div>
+                        <div class="day-actions">
+                            <span class="topic-count">${day.topics.length} topics</span>
+                            <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="day-content">
+                        <div class="topics-list">
+                            ${day.topics.map((topic, idx) => {
+                                const topicId = `${day.day}-${idx}`;
+                                const isChecked = completedTopics.has(topicId);
+                                return `
+                                    <div class="topic-item">
+                                        <div class="topic-checkbox ${isChecked ? 'checked' : ''}" 
+                                             onclick="toggleTopic('${topicId}', event)"></div>
+                                        <div class="topic-info">
+                                            <div class="topic-title">${topic.title}</div>
+                                            <div class="topic-desc">${topic.desc}</div>
+                                            <div class="topic-tags">
+                                                ${topic.tags.map(tag => `<span class="topic-tag">${tag}</span>`).join('')}
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Toggle Day Expansion
+        function toggleDay(dayNum) {
+            if (expandedDays.has(dayNum)) {
+                expandedDays.delete(dayNum);
+            } else {
+                expandedDays.add(dayNum);
+            }
+            renderDays(currentFilter, document.getElementById('searchInput').value);
+        }
+
+        // Toggle Topic Completion
+        function toggleTopic(topicId, event) {
+            event.stopPropagation();
+            if (completedTopics.has(topicId)) {
+                completedTopics.delete(topicId);
+            } else {
+                completedTopics.add(topicId);
+            }
+            saveProgress();
+            updateProgress();
+            renderDays(currentFilter, document.getElementById('searchInput').value);
+        }
+
+        // Update Progress Display
+        function updateProgress() {
+            const totalTopics = roadmapData.reduce((sum, day) => sum + day.topics.length, 0);
+            const completedCount = completedTopics.size;
+            const daysCompleted = new Set([...completedTopics].map(id => parseInt(id.split('-')[0]))).size;
+            const percentage = (completedCount / totalTopics) * 100;
+
+            document.getElementById('completedDays').textContent = daysCompleted;
+            document.getElementById('completedTopics').textContent = completedCount;
+            document.getElementById('totalTopics').textContent = totalTopics;
+            document.getElementById('progressBar').style.width = `${percentage}%`;
+        }
+
+        // Save Progress to LocalStorage
+        function saveProgress() {
+            const data = {
+                completedTopics: [...completedTopics],
+                expandedDays: [...expandedDays]
+            };
+            localStorage.setItem('cybersecProgress', JSON.stringify(data));
+        }
+
+        // Load Progress from LocalStorage
+        function loadProgress() {
+            const saved = localStorage.getItem('cybersecProgress');
+            if (saved) {
+                const data = JSON.parse(saved);
+                completedTopics = new Set(data.completedTopics || []);
+                expandedDays = new Set(data.expandedDays || []);
+            }
+        }
+
+        // Reset Progress
+        function resetProgress() {
+            if (confirm('Are you sure you want to reset all progress?')) {
+                completedTopics.clear();
+                expandedDays.clear();
+                saveProgress();
+                updateProgress();
+                renderDays(currentFilter, document.getElementById('searchInput').value);
+                showModal('Progress Reset', 'All progress has been reset.');
+            }
+        }
+
+        // Export Progress
+        function exportProgress() {
+            const data = {
+                completedTopics: [...completedTopics],
+                exportDate: new Date().toISOString()
+            };
+            const json = JSON.stringify(data, null, 2);
+            navigator.clipboard.writeText(json).then(() => {
+                showModal('Export Progress', 'Your progress has been copied to clipboard. Save it somewhere safe!');
+            });
+        }
+
+        // Import Progress
+        function importProgress() {
+            const json = prompt('Paste your exported progress JSON:');
+            if (json) {
+                try {
+                    const data = JSON.parse(json);
+                    completedTopics = new Set(data.completedTopics || []);
+                    saveProgress();
+                    updateProgress();
+                    renderDays(currentFilter, document.getElementById('searchInput').value);
+                    showModal('Import Progress', 'Your progress has been imported successfully!');
+                } catch (e) {
+                    showModal('Import Error', 'Invalid JSON format. Please check your data.');
+                }
+            }
+        }
+
+        // Modal Functions
+        function showModal(title, content) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalContent').textContent = content;
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Search Input
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                renderDays(currentFilter, e.target.value);
+            });
+
+            // Phase Filter
+            document.getElementById('phaseFilter').addEventListener('change', (e) => {
+                currentFilter = e.target.value === 'all' ? 'all' : 
+                    e.target.value.split(' ')[0].toLowerCase();
+                renderDays(currentFilter, document.getElementById('searchInput').value);
+                
+                // Update tabs
+                document.querySelectorAll('.phase-tab').forEach(tab => {
+                    tab.classList.toggle('active', tab.dataset.phase === currentFilter);
+                });
+            });
+
+            // Phase Tabs
+            document.querySelectorAll('.phase-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    currentFilter = tab.dataset.phase;
+                    document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    document.getElementById('phaseFilter').value = 
+                        currentFilter === 'all' ? 'all' : 
+                        currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1);
+                    renderDays(currentFilter, document.getElementById('searchInput').value);
+                });
+            });
+
+            // Close modal on overlay click
+            document.getElementById('modalOverlay').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) {
+                    closeModal();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+

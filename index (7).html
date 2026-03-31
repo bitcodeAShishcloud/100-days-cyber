@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Days of Cyber Security - Detailed</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Smooth Nested Accordion Animation */
+        .accordion-grid {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+        .accordion-grid.open {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+        .accordion-inner {
+            overflow: hidden;
+        }
+        /* Icon Rotation */
+        .rotate-icon {
+            transition: transform 0.2s ease-in-out;
+        }
+        .rotate-icon.open {
+            transform: rotate(90deg);
+        }
+        /* Custom Scrollbar for Hacker Aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #166534; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #22c55e; 
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-black py-10 px-4 sm:px-6 lg:px-8 font-sans selection:bg-green-500 selection:text-black text-gray-100">
+
+    <div class="max-w-5xl mx-auto">
+        <!-- Header Section -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-500 tracking-tight mb-4">
+                100 Days of Cyber Security
+            </h1>
+            <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-6">
+                The ultimate day-by-day progression from Day 0 (Linux) to Day 100 (Bug Bounty Hunter). Click on a phase to expand the daily roadmap.
+            </p>
+            
+            <!-- Global Controls -->
+            <div class="flex justify-center gap-4">
+                <button onclick="toggleAll('open')" class="px-4 py-2 rounded-md bg-gray-900 border border-green-800 text-sm text-green-400 hover:bg-green-900/30 transition-colors flex items-center">
+                    <i data-lucide="maximize-2" class="w-4 h-4 mr-2"></i> Expand All Phases
+                </button>
+                <button onclick="toggleAll('close')" class="px-4 py-2 rounded-md bg-gray-900 border border-gray-800 text-sm text-gray-400 hover:bg-gray-800 transition-colors flex items-center">
+                    <i data-lucide="minimize-2" class="w-4 h-4 mr-2"></i> Collapse All
+                </button>
+            </div>
+        </div>
+
+        <!-- Roadmap Container -->
+        <div id="roadmap-container" class="space-y-6">
+            <!-- Data injected via JS -->
+        </div>
+    </div>
+
+    <script>
+        // System-Level Script Generation for 100 Days
+        // To handle 0-100 days (101 total) systematically, we structure by Phase > Day > Topics
+        
+        const rawData = [
+            {
+                unit: "Phase 1: Foundation - OS & Networking",
+                icon: "terminal", color: "text-green-400",
+                days: [
+                    { day: "Day 0: The Hacker Mindset & Setup", topics: ["What is Ethical Hacking?", "Setting up Kali Linux/Parrot OS in a VM", "Understanding Virtualization (VirtualBox/VMware)", "Taking Snapshots and safe practices"] },
+                    { day: "Day 1: Linux Terminal Survival", topics: ["Navigating directories (cd, ls, pwd)", "File manipulation (cp, mv, rm, mkdir)", "Viewing files (cat, less, tail, head)", "Command chaining (&&, ||, ;)"] },
+                    { day: "Day 2: Linux Permissions & Users", topics: ["Understanding rwx (chmod, chown)", "SUID, SGID, and Sticky Bits", "User management (useradd, usermod)", "The sudoers file"] },
+                    { day: "Day 3: Package Management & Services", topics: ["Using APT and DPKG", "Compiling tools from source (make)", "Managing systemd services (systemctl)", "Checking running processes (ps, top, htop)"] },
+                    { day: "Day 4: Bash Scripting Basics", topics: ["Shebangs and variables", "If/Else conditional statements", "For and While loops", "Automating a simple ping sweep"] },
+                    { day: "Day 5: Networking - OSI & TCP/IP", topics: ["The 7 Layers of OSI", "TCP/IP Model comparison", "How data encapsulation works", "MAC vs IP addressing"] },
+                    { day: "Day 6: Deep Dive into TCP & UDP", topics: ["The TCP 3-way handshake", "TCP flags (SYN, ACK, FIN, RST)", "Why UDP is stateless (and why it matters)", "Common ports (21, 22, 80, 443, 445)"] },
+                    { day: "Day 7: IPv4 & Subnetting", topics: ["Public vs Private IP ranges", "CIDR notation (/24, /16, etc.)", "Calculating network and broadcast addresses", "Introduction to IPv6"] },
+                    { day: "Day 8: DNS & DHCP Fundamentals", topics: ["How DNS resolution works (A, AAAA, MX, TXT)", "The DHCP DORA process", "Modifying the /etc/hosts file", "DNS cache poisoning concept"] },
+                    { day: "Day 9: Network CLI Tools", topics: ["Ping and ICMP protocols", "Tracing routes (traceroute/tracert)", "Querying DNS (dig, nslookup)", "Checking connections with netstat/ss"] },
+                    { day: "Day 10: Packet Analysis Setup", topics: ["Installing Wireshark", "Promiscuous mode vs Monitor mode", "Capturing your first HTTP traffic", "Filtering packets (ip.addr, tcp.port)"] }
+                ]
+            },
+            {
+                unit: "Phase 2: Reconnaissance & Enumeration",
+                icon: "globe", color: "text-cyan-400",
+                days: [
+                    { day: "Day 11: Passive OSINT", topics: ["What is Open Source Intelligence?", "Using Google Dorks (site:, filetype:)", "Checking breached credentials (HIBP)", "Social media footprinting"] },
+                    { day: "Day 12: Advanced Search Engines", topics: ["Shodan: The search engine for IoT", "Censys for certificate recon", "Using theHarvester for emails", "Automating OSINT with Maltego"] },
+                    { day: "Day 13: DNS & Subdomain Recon", topics: ["Zone transfers (AXFR)", "Subdomain enumeration with Sublist3r", "Using Amass for deep discovery", "Finding hidden domains with Crt.sh"] },
+                    { day: "Day 14: Active Recon Basics", topics: ["Ping sweeps (fping)", "Nmap introduction and syntax", "TCP Connect vs SYN stealth scans", "Identifying live hosts"] },
+                    { day: "Day 15: Nmap Advanced", topics: ["Service and Version detection (-sV)", "OS fingerprinting (-O)", "Timing templates (-T4, -T5)", "Saving outputs (XML, Grepable)"] },
+                    { day: "Day 16: Nmap Scripting Engine (NSE)", topics: ["How NSE works", "Running default scripts (-sC)", "Vulnerability scanning with NSE", "Finding specific scripts in /usr/share/nmap"] },
+                    { day: "Day 17: Web Directory Brute-Forcing", topics: ["Why directories are hidden", "Using Gobuster", "Using Dirsearch", "Understanding wordlists (SecLists)"] },
+                    { day: "Day 18: Web Tech Fingerprinting", topics: ["Using Wappalyzer", "Identifying CMS (WordPress, Joomla)", "Using WhatWeb", "Analyzing HTTP response headers"] },
+                    { day: "Day 19: SMB & FTP Enumeration", topics: ["Null sessions in SMB", "Enumerating shares with smbclient", "Using Enum4Linux", "Checking anonymous FTP logins"] },
+                    { day: "Day 20: Recon Methodology Wrap-up", topics: ["Building a recon bash script", "Combining Amass, Nmap, and Gobuster", "Organizing data with CherryTree/Notion", "Legal boundaries of Active Recon"] }
+                ]
+            },
+            {
+                unit: "Phase 3: Web Application Security (OWASP)",
+                icon: "shield-alert", color: "text-purple-400",
+                days: [
+                    { day: "Day 21: HTTP Protocol Deep Dive", topics: ["GET, POST, PUT, DELETE methods", "Understanding HTTP Status Codes (200, 302, 403, 500)", "Cookies and Session IDs", "Same-Origin Policy (SOP) basics"] },
+                    { day: "Day 22: Burp Suite Foundation", topics: ["Configuring FoxyProxy", "Installing the CA Certificate", "Intercepting and modifying requests", "Using the Burp Repeater"] },
+                    { day: "Day 23: Burp Suite Advanced", topics: ["Sniper vs Battering Ram (Intruder)", "Automating login brute-force", "Using Burp Decoder", "Introduction to Burp Extensions"] },
+                    { day: "Day 24: SQL Injection (SQLi) Basics", topics: ["How databases interact with web apps", "Error-based SQLi", "The classic ' OR 1=1 -- bypass", "Identifying vulnerable parameters"] },
+                    { day: "Day 25: SQLi Advanced & Sqlmap", topics: ["Union-based SQLi", "Blind SQLi (Boolean & Time-based)", "Automating exploitation with sqlmap", "Dumping database tables and columns"] },
+                    { day: "Day 26: Cross-Site Scripting (XSS)", topics: ["Reflected XSS mechanics", "Stored XSS in databases", "DOM-based XSS in JavaScript", "Stealing cookies with basic payloads"] },
+                    { day: "Day 27: Cross-Site Request Forgery (CSRF)", topics: ["How CSRF exploits active sessions", "Crafting a malicious HTML form", "Bypassing weak Anti-CSRF tokens", "SameSite cookie attributes"] },
+                    { day: "Day 28: Server-Side Request Forgery (SSRF)", topics: ["Difference between CSRF and SSRF", "Accessing internal metadata (AWS 169.254)", "Port scanning internal networks via SSRF", "Bypassing SSRF filters"] },
+                    { day: "Day 29: Command & File Injection", topics: ["OS Command Injection (; ls -la)", "Local File Inclusion (LFI) - /etc/passwd", "Remote File Inclusion (RFI)", "Directory traversal techniques (../../)"] },
+                    { day: "Day 30: Authentication & IDOR", topics: ["Insecure Direct Object Reference (IDOR)", "Bypassing broken access controls", "JWT (JSON Web Token) manipulation", "Testing password reset mechanisms"] }
+                ]
+            },
+            {
+                unit: "Phase 4: Exploitation & Privilege Escalation",
+                icon: "target", color: "text-red-500",
+                days: [
+                    { day: "Day 31: Metasploit Framework Intro", topics: ["Starting postgresql and msfconsole", "Understanding workspaces and db_nmap", "Modules: Exploits, Payloads, Aux, Post", "Searching for vulnerabilities (searchsploit)"] },
+                    { day: "Day 32: Payloads & MSFvenom", topics: ["Staged vs Non-staged payloads", "Generating a Windows reverse shell (.exe)", "Generating a Linux ELF payload", "Encoding payloads to bypass basic AV"] },
+                    { day: "Day 33: Shells 101", topics: ["Reverse Shells vs Bind Shells", "Catching shells with Netcat", "Upgrading dumb shells to TTY (Python pty)", "Using Socat for stable shells"] },
+                    { day: "Day 34: Password Cracking Basics", topics: ["Understanding Hashes vs Encryption", "Identifying hash types (hash-identifier)", "Introduction to John the Ripper", "Using the rockyou.txt wordlist"] },
+                    { day: "Day 35: Advanced Cracking with Hashcat", topics: ["Hashcat syntax and attack modes", "Dictionary vs Mask attacks", "Rule-based password mutation", "Cracking Linux /etc/shadow hashes"] },
+                    { day: "Day 36: Linux Privilege Escalation 1", topics: ["Basic enum (uname, id, sudo -l)", "Exploiting SUID bit binaries", "Using GTFOBins", "Cron job misconfigurations"] },
+                    { day: "Day 37: Linux Privilege Escalation 2", topics: ["Exploiting PATH variables", "NFS root squashing", "Kernel exploits (DirtyCow basics)", "Running LinPEAS for automated enum"] },
+                    { day: "Day 38: Windows Privilege Escalation 1", topics: ["Windows architecture basics (SAM, SYSTEM)", "Unquoted Service Paths", "Insecure Service Permissions (binPath)", "AlwaysInstallElevated registry keys"] },
+                    { day: "Day 39: Windows Privilege Escalation 2", topics: ["Token Impersonation (PrintSpoofer/Potato)", "Stored credentials (cmdkey, DPAPI)", "UAC Bypass techniques", "Running WinPEAS"] },
+                    { day: "Day 40: Post-Exploitation", topics: ["Pivoting via SSH/Chisel", "Maintaining persistence (Registry/Cron)", "Clearing logs (Covering tracks)", "Dumping credentials with Mimikatz"] }
+                ]
+            },
+            {
+                unit: "Phase 5: Active Directory & Network Hacking",
+                icon: "network", color: "text-orange-400",
+                days: [
+                    { day: "Day 41: Active Directory Basics", topics: ["What is AD? (Domain Controllers, Forests)", "Understanding NTLM vs Kerberos", "LDAP and SMB in AD", "Setting up a vulnerable AD lab"] },
+                    { day: "Day 42: AD Enumeration", topics: ["Using BloodHound for visualizing AD", "Running SharpHound collector", "PowerView basics", "Enumerating Users and Groups"] },
+                    { day: "Day 43: LLMNR/NBT-NS Poisoning", topics: ["How local name resolution fails", "Using Responder.py", "Capturing NTLMv2 hashes", "Cracking captured hashes"] },
+                    { day: "Day 44: Pass-the-Hash (PtH)", topics: ["Why cracking isn't always needed", "PtH with CrackMapExec", "PtH with Evil-WinRM", "Mitigating PtH attacks"] },
+                    { day: "Day 45: Kerberoasting", topics: ["How Service Principal Names (SPNs) work", "Requesting TGS tickets", "Extracting hashes with Impacket (GetUserSPNs)", "Cracking offline tickets"] },
+                    { day: "Day 46: AS-REP Roasting", topics: ["Understanding pre-authentication", "Finding users with 'Do not require Kerberos preauth'", "Extracting AS-REP hashes", "Cracking hashes with Hashcat"] },
+                    { day: "Day 47: SMB Relay Attacks", topics: ["How SMB Relaying works", "Disabling SMB signing requirements", "Using ntlmrelayx.py", "Gaining shell access via relay"] },
+                    { day: "Day 48: DCSync & Golden Tickets", topics: ["Exploiting excessive replication rights", "Dumping the NTDS.dit", "Creating a Golden Ticket (Forging TGTs)", "Creating a Silver Ticket (Forging TGSs)"] },
+                    { day: "Day 49: Lateral Movement", topics: ["Using WMI (Windows Management Instrumentation)", "Using PsExec", "Pass-the-Ticket (PtT)", "Using RDP for lateral movement"] },
+                    { day: "Day 50: Defense & Mitigation", topics: ["Enabling SMB Signing", "Enforcing LDAP Channel Binding", "Tiered Administrative Models", "Monitoring Event ID 4624/4625"] }
+                ]
+            },
+            {
+                unit: "Phase 6: Wireless, IoT & Mobile",
+                icon: "wifi", color: "text-green-300",
+                days: [
+                    { day: "Day 51: Wireless Networking 101", topics: ["2.4GHz vs 5GHz bands and channels", "Understanding BSSID, ESSID, and MAC", "Hardware requirements (Monitor mode adapters)", "Introduction to the Aircrack-ng suite"] },
+                    { day: "Day 52: Attacking WPA/WPA2", topics: ["Placing interfaces in Monitor mode (airmon-ng)", "Discovering networks (airodump-ng)", "Deauthenticating clients (aireplay-ng)", "Capturing the 4-way EAPOL handshake"] },
+                    { day: "Day 53: Advanced WiFi Attacks", topics: ["Cracking WPA2 with Hashcat (hcxpcapngtool)", "WPS Pin brute-forcing (Reaver)", "WPS Pixie Dust attacks", "Creating an Evil Twin access point"] },
+                    { day: "Day 54: Bluetooth & RFID Basics", topics: ["Bluetooth scanning with hcitool", "Understanding BLE (Bluetooth Low Energy)", "RFID vs NFC protocols", "Cloning badges with Proxmark3 (Concepts)"] },
+                    { day: "Day 55: IoT Security Fundamentals", topics: ["Common IoT architectures", "Analyzing IoT firmware", "Default credentials in embedded systems", "MQTT protocol vulnerabilities"] },
+                    { day: "Day 56: Hardware Hacking Intro", topics: ["UART, SPI, and I2C protocols", "Using a Bus Pirate or FT232H", "Extracting firmware via UART", "JTAG debugging concepts"] },
+                    { day: "Day 57: Mobile Security OS Concepts", topics: ["Android Architecture (Linux kernel layer)", "iOS Architecture (Sandboxing)", "Jailbreaking vs Rooting", "Installing Frida for dynamic analysis"] },
+                    { day: "Day 58: Android Application Reverse Engineering", topics: ["Structure of an APK file", "Decompiling with Apktool", "Reading Java code with JADX-GUI", "Modifying and resigning APKs"] },
+                    { day: "Day 59: Mobile Web API Testing", topics: ["Bypassing SSL Pinning on Android", "Routing mobile traffic through Burp Suite", "Analyzing hardcoded API keys", "Insecure data storage in SQLite"] },
+                    { day: "Day 60: Phase Wrap-Up", topics: ["Automating WiFi attacks with Wifite", "Building a portable hacking rig (Raspberry Pi)", "Securing home routers", "Mobile device management (MDM) limits"] }
+                ]
+            },
+            {
+                unit: "Phase 7: Cryptography & Steganography",
+                icon: "key", color: "text-yellow-400",
+                days: [
+                    { day: "Day 61: Cryptography History & Basics", topics: ["Caesar, Vigenère, and XOR ciphers", "Encoding vs Hashing vs Encryption", "Base64 encoding/decoding", "Frequency analysis"] },
+                    { day: "Day 62: Symmetric Encryption", topics: ["DES vs 3DES vs AES", "Block ciphers vs Stream ciphers", "Understanding ECB vs CBC modes", "Why ECB mode is dangerous"] },
+                    { day: "Day 63: Asymmetric Encryption", topics: ["The math behind RSA (Prime factoring)", "Public keys vs Private keys", "Diffie-Hellman Key Exchange", "Elliptic Curve Cryptography (ECC) basics"] },
+                    { day: "Day 64: PKI & Certificates", topics: ["How SSL/TLS works", "Certificate Authorities (CAs)", "X.509 certificate structure", "Man-in-the-Middle (MITM) on TLS"] },
+                    { day: "Day 65: Hashing Algorithms & Integrity", topics: ["MD5, SHA-1, SHA-256 differences", "Message Authentication Codes (MAC/HMAC)", "Why salting is critical for passwords", "Collision attacks explained"] },
+                    { day: "Day 66: Applied Crypto in Malware", topics: ["How Ransomware uses hybrid encryption", "Custom packers and crypters", "Identifying encrypted payloads", "Decrypting traffic in Wireshark via session keys"] },
+                    { day: "Day 67: Introduction to Steganography", topics: ["Hiding data in plain sight", "LSB (Least Significant Bit) replacement", "Using Steghide to hide text in JPEGs", "Extracting data with zsteg"] },
+                    { day: "Day 68: Advanced File Analysis", topics: ["Understanding file magic numbers", "Using Exiftool for metadata analysis", "Using Binwalk to extract embedded files", "Analyzing corrupted headers"] },
+                    { day: "Day 69: Audio & Video Steganography", topics: ["Spectrogram analysis with Sonic Visualiser", "Hiding data in WAV files", "Video frame manipulation", "Detecting stego tools"] },
+                    { day: "Day 70: Quantum & Future Crypto", topics: ["Shor's Algorithm and breaking RSA", "Post-Quantum Cryptography (PQC)", "Lattice-based cryptography", "Blockchain security fundamentals"] }
+                ]
+            },
+            {
+                unit: "Phase 8: Cloud Security & Containers",
+                icon: "cloud", color: "text-blue-400",
+                days: [
+                    { day: "Day 71: Cloud Architecture Basics", topics: ["IaaS vs PaaS vs SaaS", "AWS vs Azure vs GCP core services", "The Shared Responsibility Model", "Cloud access layers (Console, CLI, API)"] },
+                    { day: "Day 72: AWS IAM Security", topics: ["Users, Groups, Roles, and Policies", "Understanding JSON IAM policies", "Privilege escalation in AWS (*:* admin)", "Using AWS CLI for enumeration"] },
+                    { day: "Day 73: S3 & Storage Vulnerabilities", topics: ["How S3 buckets are misconfigured", "Finding open buckets with automated tools", "Reading and writing to public buckets", "Ransomware in the cloud"] },
+                    { day: "Day 74: Serverless & Cloud Compute", topics: ["AWS EC2 metadata exploitation (IMDSv1 vs v2)", "AWS Lambda function security", "Azure Function vulnerabilities", "Reverse shells via cloud compute"] },
+                    { day: "Day 75: Cloud Auditing Tools", topics: ["Setting up Pacu (AWS Exploitation Framework)", "Using ScoutSuite for multi-cloud audits", "Cloudsplaining for IAM analysis", "Reviewing CloudTrail logs"] },
+                    { day: "Day 76: Docker Security Fundamentals", topics: ["What are Containers? (Namespaces & Cgroups)", "Analyzing Dockerfiles for secrets", "Docker socket misconfigurations", "Scanning images with Trivy"] },
+                    { day: "Day 77: Container Breakouts", topics: ["Escaping privileged containers", "Mounting host filesystems", "Exploiting exposed Docker APIs", "Capabilities and dropping them"] },
+                    { day: "Day 78: Kubernetes (K8s) Architecture", topics: ["Pods, Nodes, and the Control Plane", "Kubelet and Kube-apiserver", "Understanding RBAC in K8s", "Namespaces and isolation"] },
+                    { day: "Day 79: Attacking Kubernetes", topics: ["Accessing the Kubelet API port (10250)", "Exploiting over-privileged Service Accounts", "Reading Secrets via compromised pods", "Lateral movement in K8s clusters"] },
+                    { day: "Day 80: Cloud & Container Defense", topics: ["Implementing IMDSv2", "Writing secure Dockerfiles (Least privilege)", "Network policies in Kubernetes", "Continuous compliance monitoring"] }
+                ]
+            },
+            {
+                unit: "Phase 9: Blue Team, Forensics & Malware Analysis",
+                icon: "shield-check", color: "text-indigo-400",
+                days: [
+                    { day: "Day 81: Security Operations Center (SOC)", topics: ["Role of a SOC Analyst (Tier 1/2/3)", "The Incident Response Lifecycle (PICERL)", "Understanding the Cyber Kill Chain", "MITRE ATT&CK Framework introduction"] },
+                    { day: "Day 82: SIEM Basics (Splunk & Elastic)", topics: ["Log ingestion and parsing", "Writing basic Splunk SPL queries", "Setting up an ELK stack", "Creating dashboards for visibility"] },
+                    { day: "Day 83: Endpoint Detection & Response (EDR)", topics: ["How EDR differs from Antivirus", "Windows Sysmon installation and config", "Hunting for process hollowing", "Understanding API hooking"] },
+                    { day: "Day 84: Threat Hunting & YARA", topics: ["Hypothesis-driven threat hunting", "Writing custom YARA rules", "Scanning memory with YARA", "Identifying Indicators of Compromise (IoCs)"] },
+                    { day: "Day 85: Digital Forensics Principles", topics: ["Chain of Custody and evidence handling", "Disk imaging with FTK Imager", "Write blockers (Hardware vs Software)", "Hashing images for integrity"] },
+                    { day: "Day 86: Windows Artifact Forensics", topics: ["Analyzing the Windows Registry", "Prefetch files and execution history", "Amcache and Shimcache", "LNK files and Jump Lists"] },
+                    { day: "Day 87: Memory Forensics", topics: ["Creating a memory dump", "Introduction to Volatility framework", "Finding hidden processes (psxview)", "Extracting injected code from RAM"] },
+                    { day: "Day 88: Malware Analysis Setup", topics: ["Static vs Dynamic Analysis", "Setting up a safe REMnux malware sandbox", "Disabling network access safely", "Snapshotting states"] },
+                    { day: "Day 89: Static Malware Analysis", topics: ["Using strings, FLOSS, and PEStudio", "Analyzing Portable Executable (PE) headers", "Identifying packed malware", "Deobfuscating malicious macros (VBA)"] },
+                    { day: "Day 90: Dynamic Malware Analysis", topics: ["Monitoring registry changes with ProcMon", "Analyzing network callbacks with Wireshark/FakeNet", "Using INetSim for service simulation", "Writing a basic malware analysis report"] }
+                ]
+            },
+            {
+                unit: "Phase 10: AI, Bug Bounty & Career Launch",
+                icon: "rocket", color: "text-pink-400",
+                days: [
+                    { day: "Day 91: AI in Offensive Security", topics: ["Using ChatGPT/Claude for script generation", "Prompt Engineering for Hackers", "Prompt Injection vulnerabilities in LLM apps", "Data exfiltration via AI agents"] },
+                    { day: "Day 92: AI in Defensive Security", topics: ["Automating log analysis with LLMs", "Building an AI-assisted SOAR playbook", "Deepfakes and combating modern Social Engineering", "AI firewall bypass techniques"] },
+                    { day: "Day 93: Bug Bounty Fundamentals", topics: ["HackerOne, Bugcrowd, Intigriti platforms", "Understanding VDPs vs Bug Bounties", "Reading the scope meticulously", "The CVSS scoring system"] },
+                    { day: "Day 94: Finding Your First Bug", topics: ["Focusing on low-hanging fruit (Misconfigs)", "Business Logic Flaws", "Chaining minor bugs into P1 impacts", "Why 'dupes' happen and how to handle them"] },
+                    { day: "Day 95: Writing Vulnerability Reports", topics: ["Structuring a clear, concise report", "Writing reproducible Steps to Reproduce (PoC)", "Explaining Business Impact", "Communicating professionally with triage teams"] },
+                    { day: "Day 96: CTF Methodologies", topics: ["Transitioning from TryHackMe to HackTheBox", "Approaching boot-to-root machines", "Time management during live CTFs", "Reading write-ups effectively"] },
+                    { day: "Day 97: Certifications Map", topics: ["Entry Level: CompTIA Sec+, eJPT", "Intermediate: OSCP, PNPT", "Advanced: OSEP, OSWE", "Which certification fits your goal?"] },
+                    { day: "Day 98: Building a Cybersecurity Portfolio", topics: ["Creating a GitHub repository of custom scripts", "Starting a technical blog (Medium/Hashnode)", "Publishing CTF write-ups", "Contributing to Open Source security tools"] },
+                    { day: "Day 99: Resume & Interview Prep", topics: ["Structuring a Cyber resume without experience", "Handling technical interview questions", "Explaining the OSI model in an interview", "Demonstrating passion vs just knowledge"] },
+                    { day: "Day 100: The Final Capstone", topics: ["Completing a Proving Grounds/HTB Pro Lab", "Reviewing your 100-day notes", "Setting your Year 2 goals", "Welcome to the Cyber Security Community!"] }
+                ]
+            }
+        ];
+
+        // Generator logic
+        const container = document.getElementById('roadmap-container');
+        
+        function renderRoadmap() {
+            let htmlContent = '';
+
+            rawData.forEach((phase, pIndex) => {
+                const phaseContentId = `phase-content-${pIndex}`;
+                const phaseChevronId = `phase-chevron-${pIndex}`;
+                
+                let daysHtml = '';
+                
+                phase.days.forEach((dayObj, dIndex) => {
+                    const dayContentId = `day-content-${pIndex}-${dIndex}`;
+                    const dayChevronId = `day-chevron-${pIndex}-${dIndex}`;
+                    
+                    let topicsHtml = '';
+                    dayObj.topics.forEach(topic => {
+                        topicsHtml += `
+                            <li class="text-sm text-gray-400 flex items-start py-1 hover:text-gray-200 transition-colors">
+                                <span class="text-green-500 mr-2 mt-0.5 text-xs font-bold">↳</span>
+                                <span>${topic}</span>
+                            </li>
+                        `;
+                    });
+
+                    daysHtml += `
+                        <div class="ml-4 sm:ml-8 mt-3 border-l border-gray-700 pl-4">
+                            <button onclick="toggleAccordion('${dayContentId}', '${dayChevronId}')" class="flex items-center w-full text-left py-2 text-gray-300 hover:text-green-400 transition-colors duration-200 focus:outline-none group">
+                                <i data-lucide="chevron-right" id="${dayChevronId}" class="w-4 h-4 mr-2 text-gray-500 rotate-icon group-hover:text-green-400"></i>
+                                <span class="font-semibold text-[15px]">${dayObj.day}</span>
+                            </button>
+                            
+                            <div id="${dayContentId}" class="accordion-grid mt-1 pl-6 border-l border-gray-800/50">
+                                <div class="accordion-inner pb-2">
+                                    <ul class="list-none space-y-1">
+                                        ${topicsHtml}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                htmlContent += `
+                    <div class="mb-4 bg-gray-900 rounded-lg border border-gray-800 shadow-xl overflow-hidden hover:border-gray-700 transition-colors duration-300 group phase-container">
+                        <button onclick="toggleAccordion('${phaseContentId}', '${phaseChevronId}')" class="flex items-center justify-between w-full p-4 bg-gray-900 hover:bg-gray-800 transition-colors duration-200 focus:outline-none">
+                            <div class="flex items-center space-x-4 text-left">
+                                <div class="p-2 bg-black rounded-lg border border-gray-800 group-hover:border-gray-600 transition-colors">
+                                    <i data-lucide="${phase.icon}" class="w-6 h-6 ${phase.color}"></i>
+                                </div>
+                                <h2 class="text-xl font-bold text-gray-100 tracking-wide">${phase.unit}</h2>
+                            </div>
+                            <i data-lucide="chevron-right" id="${phaseChevronId}" class="w-6 h-6 text-gray-500 rotate-icon"></i>
+                        </button>
+
+                        <div id="${phaseContentId}" class="accordion-grid phase-content">
+                            <div class="accordion-inner transition-colors duration-300 pb-4 pr-4">
+                                ${daysHtml}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = htmlContent;
+            lucide.createIcons(); // Initialize icons
+        }
+
+        // Toggle Single Accordion
+        function toggleAccordion(elementId, chevronId) {
+            const content = document.getElementById(elementId);
+            const chevron = document.getElementById(chevronId);
+            
+            content.classList.toggle('open');
+            chevron.classList.toggle('open');
+            chevron.classList.toggle('text-gray-500');
+            chevron.classList.toggle('text-green-500');
+        }
+
+        // Global expand/collapse utility
+        function toggleAll(action) {
+            const allGrids = document.querySelectorAll('.accordion-grid');
+            const allChevrons = document.querySelectorAll('.rotate-icon');
+
+            allGrids.forEach(grid => {
+                if (action === 'open') grid.classList.add('open');
+                else grid.classList.remove('open');
+            });
+
+            allChevrons.forEach(chevron => {
+                if (action === 'open') {
+                    chevron.classList.add('open', 'text-green-500');
+                    chevron.classList.remove('text-gray-500');
+                } else {
+                    chevron.classList.remove('open', 'text-green-500');
+                    chevron.classList.add('text-gray-500');
+                }
+            });
+        }
+
+        // Run on load
+        document.addEventListener('DOMContentLoaded', renderRoadmap);
+
+    </script>
+</body>
+</html>
